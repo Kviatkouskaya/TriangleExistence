@@ -58,5 +58,19 @@ namespace TestProject
                 Assert.AreEqual(expected[i], result[i]);
             }
         }
+
+        [TestMethod]
+        public void CheckParseLine2()
+        {
+            int[] expected = { 5, 6, 10 };
+            int[] result = TriangleExistence.Program.ParseLine("5,6,7");
+            for (int i = 0; i < expected.Length; i++)
+            {
+                if (expected[i] != result[i])
+                {
+                    Assert.AreNotEqual(expected[i], result[i]);
+                }
+            }
+        }
     }
 }
