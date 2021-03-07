@@ -43,7 +43,7 @@ namespace TriangleExistence
             Console.WriteLine("Enter triangle sides: ");
             return Console.ReadLine();
         }
-        private static int[] ParseLine(string line)
+        public static int[] ParseLine(string line)
         {
             try
             {

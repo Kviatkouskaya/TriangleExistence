@@ -15,19 +15,25 @@ namespace TestProject
             bool result = myTriangle.TriangleCheck();
             Assert.AreEqual(expected, result);
         }
+
         [TestMethod]
         public void CheckExistance2()
         {
-
+            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(4, 3, 2);
+            bool expected = true;
+            bool result = myTriangle.TriangleCheck();
+            Assert.AreEqual(expected, result);
         }
+
         [TestMethod]
         public void CheckPerimeter()
         {
-            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(4, 2, 2);
-            int expected = 8;
+            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(4, 3, 2);
+            int expected = 9;
             int result = myTriangle.TrianglePerimeter();
             Assert.AreEqual(expected, result);
         }
+
         [TestMethod]
         public void CheckGeronSquare()
         {
@@ -35,6 +41,22 @@ namespace TestProject
             double expected = 92.56349172324907;
             double result = myTriangle.GeronSquare();
             Assert.AreEqual(expected, result);
+        }
+    }
+    [TestClass]
+    public class ProgramCheck
+    {
+        [TestInitialize]
+
+        [TestMethod]
+        public void CheckParseLine()
+        {
+            int[] expected = { 5, 6, 7 };
+            int[] result = TriangleExistence.Program.ParseLine("5,6,7");
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], result[i]);
+            }
         }
     }
 }
