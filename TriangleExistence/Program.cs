@@ -2,7 +2,7 @@
 
 namespace TriangleExistence
 {
-    internal class Triangle
+    public class Triangle
     {
         private int First { get; }
         private int Second { get; }
@@ -13,15 +13,15 @@ namespace TriangleExistence
             Second = b;
             Third = c;
         }
-        public string TriangleCheck()
+        public bool TriangleCheck()
         {
             if ((First + Second > Third) &&
                 (Second + Third > First) &&
                 (Third + First > Second))
             {
-                return "Triangle exists";
+                return true;
             }
-            return "Triangle doesn't exist";
+            return false;
         }
         public int TrianglePerimeter()
         {
@@ -36,9 +36,9 @@ namespace TriangleExistence
             return square;
         }
     }
-    class Program
+    public class Program
     {
-        private static string EnterTriangleSides()
+        public static string EnterTriangleSides()
         {
             Console.WriteLine("Enter triangle sides: ");
             return Console.ReadLine();
@@ -61,7 +61,7 @@ namespace TriangleExistence
         {
             Triangle myTriangle = new Triangle(numbers[0], numbers[1], numbers[2]);
             Console.WriteLine();
-            Console.WriteLine(myTriangle.TriangleCheck());
+            Console.WriteLine($"Triangle exists: { myTriangle.TriangleCheck()}");
             Console.WriteLine($"Perimeter is: {myTriangle.TrianglePerimeter()}");
             Console.WriteLine($"Square is: {myTriangle.GeronSquare():F2}");
         }
