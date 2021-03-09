@@ -5,72 +5,51 @@ namespace TestProject
     [TestClass]
     public class TriangleTests
     {
-        [TestInitialize]
-
-        [TestMethod]
-        public void CheckExistance()
+        [DataRow(1, 2, 7, false)]
+        [DataRow(4, 3, 3, true)]
+        [DataRow(6, 2, 2, false)]
+        [DataRow(4, 3, 3, true)]
+        [DataTestMethod]
+        public void CheckExistance(int a, int b, int c, bool expected)
         {
-            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(4, 2, 2);
-            bool expected = false;
-            bool result = myTriangle.TriangleCheck();
+            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(a, b, c);
+            bool result = myTriangle.ExistTriangle();
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
-        public void CheckExistance2()
+        [DataRow(3, 3, 4, 10)]
+        [DataRow(5, 5, 7, 17)]
+        [DataRow(6, 6, 5, 17)]
+        [DataTestMethod]
+        public void CheckPerimeter(int a, int b, int c, int expected)
         {
-            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(4, 3, 2);
-            bool expected = true;
-            bool result = myTriangle.TriangleCheck();
+            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(a, b, c);
+            int result = myTriangle.CalculatePerimeter();
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
-        public void CheckPerimeter()
+        [DataRow(16, 20, 33, 92.56349172324907)]
+        [DataRow(17, 14, 16, 93.24162160752032)]
+        [DataRow(6, 4, 5, 6.48074069840786)]
+        [DataTestMethod]
+        public void CheckGeronSquare(int a, int b, int c, double expected)
         {
-            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(4, 3, 2);
-            int expected = 9;
-            int result = myTriangle.TrianglePerimeter();
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod]
-        public void CheckGeronSquare()
-        {
-            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(16, 20, 33);
-            double expected = 92.56349172324907;
-            double result = myTriangle.GeronSquare();
+            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(a, b, c);
+            double result = myTriangle.CalculateGeronSquare();
             Assert.AreEqual(expected, result);
         }
     }
+
     [TestClass]
     public class ProgramCheck
     {
-        [TestInitialize]
-
-        [TestMethod]
-        public void CheckParseLine()
+        [DataRow("5,6,7", 5, 6, 7)]
+        [DataRow("6,7,6", 6, 7, 6)]
+        [DataTestMethod]
+        public void CheckParseLine(string line, params int[] expected)
         {
-            int[] expected = { 5, 6, 7 };
-            int[] result = TriangleExistence.Program.ParseLine("5,6,7");
-            for (int i = 0; i < expected.Length; i++)
-            {
-                Assert.AreEqual(expected[i], result[i]);
-            }
-        }
-
-        [TestMethod]
-        public void CheckParseLine2()
-        {
-            int[] expected = { 5, 6, 10 };
-            int[] result = TriangleExistence.Program.ParseLine("5,6,7");
-            for (int i = 0; i < expected.Length; i++)
-            {
-                if (expected[i] != result[i])
-                {
-                    Assert.AreNotEqual(expected[i], result[i]);
-                }
-            }
+            int[] result = TriangleExistence.Program.ParseLine(line);
+            CollectionAssert.AreEqual(expected, result);
         }
     }
 }

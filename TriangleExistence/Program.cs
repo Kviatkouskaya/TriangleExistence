@@ -1,38 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TriangleExistence
 {
     public class Triangle
     {
-        private int First { get; }
-        private int Second { get; }
-        private int Third { get; }
+        private readonly int first;
+        private readonly int second;
+        private readonly int third;
         public Triangle(int a, int b, int c)
         {
-            First = a;
-            Second = b;
-            Third = c;
+            first = a;
+            second = b;
+            third = c;
         }
-        public bool TriangleCheck()
+        public bool ExistTriangle()
         {
-            if ((First + Second > Third) &&
-                (Second + Third > First) &&
-                (Third + First > Second))
-            {
-                return true;
-            }
-            return false;
+            return (first + second > third) &&
+                   (second + third > first) &&
+                   (third + first > second);
         }
-        public int TrianglePerimeter()
+        public int CalculatePerimeter()
         {
-            int perimetr = First + Second + Third;
-            return perimetr;
+            return first + second + third;
         }
-        public double GeronSquare()
+        public double CalculateGeronSquare()
         {
-            double halfP = TrianglePerimeter() / 2;
-            double square = Math.Sqrt(halfP * (halfP - First) *
-                                     (halfP - Second) * (halfP - Third));
+            double halfP = CalculatePerimeter() / 2;
+            double square = Math.Sqrt(halfP * (halfP - first) *
+                                     (halfP - second) * (halfP - third));
             return square;
         }
     }
@@ -61,9 +57,9 @@ namespace TriangleExistence
         {
             Triangle myTriangle = new Triangle(numbers[0], numbers[1], numbers[2]);
             Console.WriteLine();
-            Console.WriteLine($"Triangle exists: { myTriangle.TriangleCheck()}");
-            Console.WriteLine($"Perimeter is: {myTriangle.TrianglePerimeter()}");
-            Console.WriteLine($"Square is: {myTriangle.GeronSquare():F2}");
+            Console.WriteLine($"Triangle exists: { myTriangle.ExistTriangle()}");
+            Console.WriteLine($"Perimeter is: {myTriangle.CalculatePerimeter()}");
+            Console.WriteLine($"Square is: {myTriangle.CalculateGeronSquare():F2}");
         }
         static void Main()
         {
