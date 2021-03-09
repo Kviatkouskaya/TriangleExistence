@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace TriangleExistence
 {
@@ -8,17 +7,15 @@ namespace TriangleExistence
         private readonly int first;
         private readonly int second;
         private readonly int third;
-        public Triangle(int a, int b, int c)
+        public Triangle(int []numbers)
         {
-            first = a;
-            second = b;
-            third = c;
+            first = numbers[0];
+            second = numbers[1];
+            third = numbers[2];
         }
         public bool ExistTriangle()
         {
-            return (first + second > third) &&
-                   (second + third > first) &&
-                   (third + first > second);
+            return first + second > third;
         }
         public int CalculatePerimeter()
         {
@@ -55,7 +52,7 @@ namespace TriangleExistence
         }
         private static void OutPut(int[] numbers)
         {
-            Triangle myTriangle = new Triangle(numbers[0], numbers[1], numbers[2]);
+            Triangle myTriangle = new Triangle(numbers);
             Console.WriteLine();
             Console.WriteLine($"Triangle exists: { myTriangle.ExistTriangle()}");
             Console.WriteLine($"Perimeter is: {myTriangle.CalculatePerimeter()}");
