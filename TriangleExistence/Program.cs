@@ -1,32 +1,37 @@
 ﻿using System;
+using System.Linq;
 
 namespace TriangleExistence
 {
     public class Triangle
     {
-        private readonly int first;
-        private readonly int second;
-        private readonly int third;
-        public Triangle(int []numbers)
+        private readonly double[] numbers = new double[3];
+
+        public Triangle(double a, double b, double c)
         {
-            first = numbers[0];
-            second = numbers[1];
-            third = numbers[2];
+            numbers[0] = a;
+            numbers[1] = b;
+            numbers[2] = c;
         }
         public bool ExistTriangle()
         {
-            return first + second > third;
+            return numbers[0] + numbers[1] > numbers[2] &&
+                   numbers[1] + numbers[2] > numbers[0] &&
+                   numbers[2] + numbers[0] > numbers[1];
         }
-        public int CalculatePerimeter()
+        public double CalculatePerimeter()
         {
-            return first + second + third;
+            return numbers.Sum();
         }
         public double CalculateGeronSquare()
         {
             double halfP = CalculatePerimeter() / 2;
-            double square = Math.Sqrt(halfP * (halfP - first) *
-                                     (halfP - second) * (halfP - third));
-            return square;
+            double square = halfP;
+            foreach (var item in numbers)
+            {
+                square *= halfP - item;
+            }
+            return Math.Sqrt(square);
         }
     }
     public class Program
@@ -36,13 +41,13 @@ namespace TriangleExistence
             Console.WriteLine("Enter triangle sides: ");
             return Console.ReadLine();
         }
-        public static int[] ParseLine(string line)
+        public static double[] ParseLine(string line)
         {
             try
             {
                 string[] numbersString = line.Split(',');
-                int[] numbersInt = Array.ConvertAll(numbersString, int.Parse);
-                return numbersInt;
+                double[] numbers = Array.ConvertAll(numbersString, double.Parse);
+                return numbers;
             }
             catch (FormatException e)
             {
@@ -50,9 +55,9 @@ namespace TriangleExistence
             }
             return null;
         }
-        private static void OutPut(int[] numbers)
+        private static void OutPut(double[] numbers)
         {
-            Triangle myTriangle = new Triangle(numbers);
+            Triangle myTriangle = new Triangle(numbers[0], numbers[1], numbers[2]);
             Console.WriteLine();
             Console.WriteLine($"Triangle exists: { myTriangle.ExistTriangle()}");
             Console.WriteLine($"Perimeter is: {myTriangle.CalculatePerimeter()}");
@@ -61,7 +66,7 @@ namespace TriangleExistence
         static void Main()
         {
             string line = EnterTriangleSides();
-            int[] numbers = ParseLine(line);
+            double[] numbers = ParseLine(line);
             if (numbers.Length == 0)
             {
                 Console.WriteLine("You didn't enter numbers");
