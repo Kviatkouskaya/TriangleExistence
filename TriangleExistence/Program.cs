@@ -7,11 +7,9 @@ namespace TriangleExistence
     {
         private readonly double[] numbers = new double[3];
 
-        public Triangle(double a, double b, double c)
+        public Triangle(double[]n)
         {
-            numbers[0] = a;
-            numbers[1] = b;
-            numbers[2] = c;
+            numbers = n;
         }
         public bool ExistTriangle()
         {
@@ -57,7 +55,7 @@ namespace TriangleExistence
         }
         private static void OutPut(double[] numbers)
         {
-            Triangle myTriangle = new Triangle(numbers[0], numbers[1], numbers[2]);
+            Triangle myTriangle = new Triangle(numbers);
             Console.WriteLine();
             Console.WriteLine($"Triangle exists: { myTriangle.ExistTriangle()}");
             Console.WriteLine($"Perimeter is: {myTriangle.CalculatePerimeter()}");
