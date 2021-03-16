@@ -12,7 +12,8 @@ namespace TestProject
         [DataTestMethod]
         public void CheckExistance(double a, double b, double c, bool expected)
         {
-            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(a, b, c);
+            double[] forCheck = { a, b, c };
+            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(forCheck);
             bool result = myTriangle.ExistTriangle();
             Assert.AreEqual(expected, result);
         }
@@ -23,7 +24,8 @@ namespace TestProject
         [DataTestMethod]
         public void CheckPerimeter(double a, double b, double c, int expected)
         {
-            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(a, b, c);
+            double[] forCheck = { a, b, c };
+            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(forCheck);
             double result = myTriangle.CalculatePerimeter();
             Assert.AreEqual(expected, result);
         }
@@ -34,7 +36,8 @@ namespace TestProject
         [DataTestMethod]
         public void CheckGeronSquare(double a, double b, double c, double expected)
         {
-            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(a, b, c);
+            double[] forCheck = { a, b, c };
+            TriangleExistence.Triangle myTriangle = new TriangleExistence.Triangle(forCheck);
             double result = myTriangle.CalculateGeronSquare();
             Assert.AreEqual(expected, result);
         }
